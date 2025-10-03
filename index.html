@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- Left Panel -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <header class="logo-location">
+                    <span class="logo">BiForescast</span>
+                    <div class="current-location">
+                        <i class="fa-solid fa-location-dot"></i> <span class="current-text">Manila</span>
+                    </div>
+                </header>
+
+                <div class="hero-text">
+                    <h1>Bisayang Weather App</h1>
+                </div>
+
+                <form action="" class="search-form">
+                    <input type="text" placeholder="Search location..." class="location-input">
+                    <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Right Panel-->
+
+        <!-- Navbar if needed -->
+        <main class="weather-data-section">
+            <nav class="main-navigation">
+
+            </nav>
+
+        <section class="today-forecast">
+            <h2>Today</h2>
+            <div class="today-card">
+                <div class="main-temp-info">
+                    <p class="temperature">32°</p>
+                    <p class="condition">Sunny</p>
+                    <p class="date">Friday, October 3, 2025</p>
+                </div>
+                <div class="weather-icon">
+                </div>
+                <div class="additional-info">
+                    <p>Humidity: 66%</p>
+                    <p>Wind: 11 km/h</p>
+                    <p>Precipitation: 35%</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="daily-forecast">
+            <h2>Daily</h2>
+            <div class="daily-cards-container">
+                <button class="nav-arrow left-arrow">&lt;</button>  
+                <div class="daily-cards">
+                    <p class="temp">32°</p>
+                    <p class="condition">Sunny</p>
+                    <p class="date">Fri 3, October '10</p>
+                </div>
+                <div class="daily-cards">
+                    <p class="temp">32°</p>
+                    <p class="condition">Sunny</p>
+                    <p class="date">Fri 3, October '10</p>
+                </div>
+                <div class="daily-cards">
+                    <p class="temp">32°</p>
+                    <p class="condition">Sunny</p>
+                    <p class="date">Fri 3, October '10</p>
+                </div>
+                <button class="nav-arrow right-arrow">&gt;</button>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/4f494640bb.js" crossorigin="anonymous"></script>
+</body>
+</html>
