@@ -31,30 +31,57 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const apiKey = 'YOUR_API_KEY'; // Replace with your actual API key
-const city = 'Manila'; // Replace with the desired city
+// Backend Weather API Key
 
-// Function to fetch weather data from OpenWeatherMap API
-async function getWeatherData(city, apiKey) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+const apiKey = "797dabf40a32901d8fd4f247e0e92cb1";
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const searchBox = document.querySelector(".location-input");
+const searchBtn = document.querySelector(".search-btn");
 
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching weather data:', error);
-        return null;
+async function checkWeather(city) {
+    if (!validateCity(city)) {
+        return;
+    }
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+    if (response.status == 404) {
+        document.querySelector(".error").style.display = "block";
+        document.querySelector(".weather").style.display = "none";
+    } else {
+        var data = await response.json();
+        console.log(data);
+        document.querySelector(".city").innerHTML = data.name + ", " + data.sys.country;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+        document.querySelector(".humidity").innerHTML = "Humitity: " + data.main.humidity + "%";
+        document.querySelector(".condition").innerHTML = data.weather[0].main;
+        document.querySelector(".precipitation").innerHTML = "Precipitation: " + Math.round(data.main.feels_like) + "%";
+        document.querySelector(".date").innerHTML = new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        document.querySelector(".wind").innerHTML = "Wind Speed: " + data.wind.speed + " km/h";
+        document.querySelector(".error").style.display = "none";
+        document.querySelector(".weather").style.display = "block";
     }
 }
 
-// Call the function and process the data
-getWeatherData(city, apiKey)
-    .then(data => {
-        if (data) {
-            console.log(data); // Process the weather data here
-        }
-    });
+searchBtn.addEventListener("click", () => {
+    checkWeather(searchBox.value);
+    document.querySelector(".location-input").value = " "
+})
+
+// Validation City should not empty and in
+function validateCity(city) {
+    if (!city) {
+        alert("Please enter a city name.");
+        return false;
+    }
+    if (!/^[a-zA-Z\s]+$/.test(city)) {
+        alert("City name should contain only letters and spaces.");
+        return false;
+    }
+    return true;
+}
+
+searchBox.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        checkWeather(searchBox.value);
+        document.querySelector(".location-input").value = " "
+    }
+});

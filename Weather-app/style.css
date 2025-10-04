@@ -76,6 +76,12 @@ body {
     color: #333;
 }
 
+.today-forecast .temp {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
 /* Right Panel */
 .weather-data-section {
     background: white;
