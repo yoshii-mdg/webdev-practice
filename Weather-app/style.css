@@ -48,11 +48,12 @@ body {
 
 .search-form {
     display: flex;
+    align-items: center;
     background: rgba(255, 255, 255, 0.5); /* semi-transparent */
     border-radius: 10px;
+    min-width: 50px;
+    margin: 100px;
     padding: 5px;
-    max-width: 400px;
-    margin-left: 100px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* subtle shadow for depth */
     backdrop-filter: blur(4px); /* optional: glass effect */
@@ -139,13 +140,14 @@ body {
 
 /* Daily Forecast */
 .daily-cards-container {
-    display: flex;
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: scroll; 
     gap: 20px;
-    overflow-x: scroll;
-    padding-bottom: 10px;
-    position: relative;
+    padding: 0 40px;  
     -ms-overflow-style: none;
     scrollbar-width: none;
+    scroll-behavior: smooth; 
 }
 
 .daily-cards-container::-webkit-scrollbar {
@@ -154,30 +156,66 @@ body {
 
 .daily-cards {
     min-width: 120px;
-    padding: 40px;
+    flex-shrink: 0; ;
     text-align: center;
     background: white;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     border-radius: 15px;
+    flex-shrink: 0; 
 }
 
 .daily-cards .temp {
     font-size: 20px;
     font-weight: bold;
+    margin: 10px 0;
 }
 
 .daily-cards .condition {
     font-size: 20px;
+    margin: 10px 0;
 }
 
 .daily-cards .date {
     font-size: 15px;
+    margin: 10px 0;
+}
+
+.daily-carousel-viewport {
+    position: relative; 
+    overflow: hidden;   
+    /* Set the fixed width to show 3 cards (3*120px + 2*20px gap) */
+    width: 400px;
+    padding: 20px 40px;
+    
+}
+
+#daily-scrollable.daily-cards-container {
+    /* REMOVED: position: relative; */ 
+    display: flex; 
+    flex-wrap: nowrap; 
+    overflow-x: scroll; 
+    gap: 20px;
+    
+    /* ADDED PADDING: We reintroduce padding to keep the cards away from the arrows */
+    padding: 0; 
+    width: 100%;
+    
+    /* Scrollbar Hiding and Smoothness */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth; 
+}
+
+
+#daily-scrollable.daily-cards-container::-webkit-scrollbar {
+    display: none;
 }
 
 .nav-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    /* ... rest of your arrow styles ... */
     width: 40px;
     height: 40px;
     background: #ffffff;
@@ -191,5 +229,9 @@ body {
     z-index: 2;
 }
 
-.left-arrow { left: 0; }
-.right-arrow { right: 0; }
+.left-arrow { 
+    left: 0; 
+}
+.right-arrow { 
+    right: 0; 
+}
